@@ -11,7 +11,7 @@ const Login = () => {
       password: password,
     };
     axios
-      .post("http://localhost:8080/login", payload)
+      .post("https://noteapp25.herokuapp.com/user/login", payload)
       .then((r) => {
         console.log(r.data);
         if (r.data.token){

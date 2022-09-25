@@ -13,7 +13,7 @@ const Signup = () => {
       age: age,
     };
     axios
-      .post("http://localhost:8080/signup", payload)
+      .post("https://noteapp25.herokuapp.com/user/signup", payload)
       .then((r) => {
         console.log(r.data);
       })

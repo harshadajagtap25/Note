@@ -16,7 +16,7 @@ app.get("/", (req, res) => {
 });
 
 app.use(cors())
-app.use("/", userController);
+app.use("/user", userController);
 app.use(authentication)
 app.use("/note", noteController);
 

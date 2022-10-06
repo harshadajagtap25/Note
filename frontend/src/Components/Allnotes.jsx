@@ -26,14 +26,19 @@ const Allnotes = () => {
     <div>
       Allnotes
       <div>
-        {notes.length > 0 &&
+        {notes.length > 0 ? (
           notes.map((note) => (
             <div key={note._id}>
               <h1>{note.Heading}</h1>
               <h3>{note.Note}</h3>
               <h3>{note.Tag}</h3>
             </div>
-          ))}
+          ))
+        ) : (
+          <div>
+            <p>No notes available</p>
+          </div>
+        )}
       </div>
     </div>
   );

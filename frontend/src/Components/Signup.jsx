@@ -16,7 +16,7 @@ const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [age, setAge] = useState("");
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleResgister = () => {
     const payload = {
@@ -28,7 +28,7 @@ const Signup = () => {
       .post("https://note258.herokuapp.com/user/signup", payload)
       .then((r) => {
         // console.log(r.data);
-        navigate("/login")
+        navigate("/login");
       })
       .catch((e) => console.log(e));
   };
@@ -45,6 +45,7 @@ const Signup = () => {
                 type="email"
                 placeholder="Enter Email Address"
                 onChange={(e) => setEmail(e.target.value)}
+                isRequired={true}
               />
             </FormControl>
             <FormControl id="age">
@@ -53,6 +54,7 @@ const Signup = () => {
                 type="number"
                 placeholder="Enter Age"
                 onChange={(e) => setAge(e.target.value)}
+                isRequired={true}
               />
             </FormControl>
             <FormControl id="password">
@@ -61,6 +63,7 @@ const Signup = () => {
                 type="password"
                 placeholder="Enter password"
                 onChange={(e) => setPassword(e.target.value)}
+                isRequired={true}
               />
             </FormControl>
             <Stack spacing={10}>

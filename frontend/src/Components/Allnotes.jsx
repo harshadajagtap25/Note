@@ -1,6 +1,8 @@
+import { Button } from "@chakra-ui/react";
 import axios from "axios";
 import React, { useState } from "react";
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const Allnotes = () => {
   const [notes, setNotes] = useState([]);
@@ -37,6 +39,10 @@ const Allnotes = () => {
         ) : (
           <div>
             <p>No notes available</p>
+            
+              <Button>
+                <Link to="/create">Create New Note</Link>
+              </Button>{" "}
           </div>
         )}
       </div>

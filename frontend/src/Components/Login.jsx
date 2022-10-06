@@ -10,10 +10,12 @@ import {
   Stack,
   Button,
 } from "@chakra-ui/react";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate()
 
   const handleSignup = () => {
     const payload = {
@@ -25,7 +27,8 @@ const Login = () => {
       .then((r) => {
         console.log(r.data);
         if (r.data.token) {
-          localStorage.setItem("note_app_token", r.data.token);
+          localStorage.setItem("note_app_token", r.data.token); 
+          navigate("/note")
         }
       })
       .catch((e) => console.log(e));

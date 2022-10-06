@@ -12,7 +12,7 @@ const app = express();
 app.use(express.json());
 
 app.get("/", (req, res) => {
-  res.send("Welcome to the notebook");
+  res.status(200).send("Welcome to the notebook");
 });
 
 app.use(cors())
@@ -25,6 +25,6 @@ app.listen(PORT, async (req, res) => {
     await connection;
     console.log(`Connected to ${PORT}`);
   } catch (err) {
-    console.log("Something went wrong to connect to ${PORT}");
+    console.log(`Something went wrong to connect to ${PORT}`);
   }
 });

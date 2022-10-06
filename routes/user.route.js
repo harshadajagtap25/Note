@@ -18,7 +18,7 @@ userController.post("/signup", (req, res) => {
     });
     // console.log(user)
     await user.save();
-    res.send({ msg: "Successfully signed up" });
+    res.status(200).send({ msg: "Successfully signed up" });
   });
 });
 userController.post("/login", async (req, res) => {

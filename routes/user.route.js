@@ -29,9 +29,11 @@ userController.post("/login", async (req, res) => {
   bcrypt.compare(password, hash, (err, result) => {
     if (result) {
       const token = jwt.sign({ userId: user._id }, SECRET_KEY);
+      // console.log(token, email)
       res.send({
         msg: "Successfully  Logged in",
         token: token,
+        email: email,
       });
     } else {
       res.send("Failed to login... Please enter valid credentials.");

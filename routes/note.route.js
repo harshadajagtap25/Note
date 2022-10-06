@@ -12,7 +12,7 @@ noteController.post("/create", async (req, res) => {
   const note = new NoteModel({ Heading, Note, Tag, userId });
   try {
     await note.save();
-    res.send("note created");
+    res.status(201).send({msg:"note created"});
   } catch (err) {
     res.send("Something went wrong");
   }

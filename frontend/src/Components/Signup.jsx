@@ -1,10 +1,22 @@
 import React, { useState } from "react";
 import axios from "axios";
+import {
+  Box,
+  Flex,
+  FormControl,
+  FormLabel,
+  Heading,
+  Input,
+  Stack,
+  Button,
+} from "@chakra-ui/react";
+import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [age, setAge] = useState("");
+  const navigate = useNavigate()
 
   const handleResgister = () => {
     const payload = {
@@ -15,37 +27,58 @@ const Signup = () => {
     axios
       .post("https://noteapp25.herokuapp.com/user/signup", payload)
       .then((r) => {
-        console.log(r.data);
+        // console.log(r.data);
+        navigate("/login")
       })
       .catch((e) => console.log(e));
   };
   return (
-    <div>
-      <h1>Register Here</h1>
-      <div>
-        <input
-          type="email"
-          placeholder="Enter email"
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <br />
-        <input
-          type="password"
-          placeholder="Enter password"
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <br />
+    <Flex minH={"100vh"} align={"center"} justify={"center"}>
+      <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
+        <Heading fontSize={"4xl"}>Sign in to your account</Heading>
 
-        <input
-          type="age"
-          placeholder="Enter age"
-          onChange={(e) => setAge(e.target.value)}
-        />
-        <br />
-
-        <button onClick={handleResgister}>Register</button>
-      </div>
-    </div>
+        <Box rounded={"lg"} boxShadow={"lg"} p={8}>
+          <Stack spacing={4}>
+            <FormControl id="email">
+              <FormLabel>Email address</FormLabel>
+              <Input
+                type="email"
+                placeholder="Enter Email Address"
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </FormControl>
+            <FormControl id="age">
+              <FormLabel>Age</FormLabel>
+              <Input
+                type="number"
+                placeholder="Enter Age"
+                onChange={(e) => setAge(e.target.value)}
+              />
+            </FormControl>
+            <FormControl id="password">
+              <FormLabel>Password</FormLabel>
+              <Input
+                type="password"
+                placeholder="Enter password"
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </FormControl>
+            <Stack spacing={10}>
+              <Button
+                bg={"blue.400"}
+                color={"white"}
+                _hover={{
+                  bg: "blue.500",
+                }}
+                onClick={handleResgister}
+              >
+                Sign in
+              </Button>
+            </Stack>
+          </Stack>
+        </Box>
+      </Stack>
+    </Flex>
   );
 };
 

@@ -28,6 +28,7 @@ const Login = () => {
         console.log(r.data);
         if (r.data.token) {
           localStorage.setItem("note_app_token", r.data.token); 
+          localStorage.setItem("note_app_email", r.data.email);
           navigate("/note")
         }
       })
@@ -66,7 +67,7 @@ const Login = () => {
                 }}
                 onClick={handleSignup}
               >
-                Sign in
+                Login
               </Button>
             </Stack>
           </Stack>

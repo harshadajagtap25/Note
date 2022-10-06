@@ -12,7 +12,7 @@ noteController.post("/create", async (req, res) => {
   const note = new NoteModel({ Heading, Note, Tag, userId });
   try {
     await note.save();
-    res.status(201).send({msg:"note created"});
+    res.status(201).send({ msg: "note created" });
   } catch (err) {
     res.send("Something went wrong");
   }
@@ -24,7 +24,7 @@ noteController.patch("/edit/:noteId", async (req, res) => {
     { _id: noteId, userId: req.body.userId },
     { Heading: req.body.Heading, Note: req.body.Note, Tag: req.body.Heading }
   );
-  if (updatedNote) res.send("Note updated Successfully");
+  if (updatedNote) res.send({ msg: "Note updated Successfully" });
   else res.send("Something went wrong");
 });
 

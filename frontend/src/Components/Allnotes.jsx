@@ -3,11 +3,13 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
+import { Table, Thead, Tbody, Tr, Th, TableContainer } from "@chakra-ui/react";
+import NoteTable from "./NoteTable";
 
 const Allnotes = () => {
   const [notes, setNotes] = useState([]);
   const token = localStorage.getItem("note_app_token");
-  const handleSignup = () => {
+  const getNotes = () => {
     axios
       .get("https://note258.herokuapp.com/note", {
         headers: {
@@ -20,29 +22,78 @@ const Allnotes = () => {
       })
       .catch((e) => console.log(e));
   };
+  const handleDelete = (id) => {
+    axios
+      .delete(
+        `https://note258.herokuapp.com/note/delete/${id}`,
+
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then((r) => {
+        console.log(r);
+      })
+      .catch((e) => console.log(e));
+  };
+  const handleEdit = (id) => {
+
+    axios
+      .patch(
+        `https://note258.herokuapp.com/note/edit/${id}`,
+
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then((r) => {
+        console.log(r);
+        getNotes();
+      })
+      .catch((e) => console.log(e));
+  };
 
   useEffect(() => {
-    handleSignup();
+    getNotes();
   }, []);
   return (
     <div>
       Allnotes
       <div>
         {notes.length > 0 ? (
-          notes.map((note) => (
-            <div key={note._id}>
-              <h1>{note.Heading}</h1>
-              <h3>{note.Note}</h3>
-              <h3>{note.Tag}</h3>
-            </div>
-          ))
+          <TableContainer>
+            <Table size="sm">
+              <Thead>
+                <Tr>
+                  <Th>Heading</Th>
+                  <Th>Note</Th>
+                  <Th>Tag</Th>
+                  <Th></Th>
+                  <Th></Th>
+                </Tr>
+              </Thead>
+              <Tbody>
+                {notes.map((note) => (
+                  <NoteTable
+                    key={note._id}
+                    note={note}
+                    handleDelete={handleDelete}
+                    handleEdit={handleEdit}
+                  />
+                ))}
+              </Tbody>
+            </Table>
+          </TableContainer>
         ) : (
           <div>
             <p>No notes available</p>
-            
-              <Button>
-                <Link to="/create">Create New Note</Link>
-              </Button>{" "}
+            <Button>
+              <Link to="/create">Create New Note</Link>
+            </Button>{" "}
           </div>
         )}
       </div>

@@ -16,7 +16,6 @@ const Create = () => {
   const [heading, setHeading] = useState("");
   const [note, setNote] = useState("");
   const [tag, setTag] = useState("");
-  const [notes, setNotes] = useState([]);
   const navigate = useNavigate();
 
   const token = localStorage.getItem("note_app_token");

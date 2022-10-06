@@ -7,7 +7,7 @@ const Allnotes = () => {
   const token = localStorage.getItem("note_app_token");
   const handleSignup = () => {
     axios
-      .get("https://noteapp25.herokuapp.com/note", {
+      .get("https://note258.herokuapp.com/note", {
         headers: {
           Authorization: `Bearer ${token}`,
         },

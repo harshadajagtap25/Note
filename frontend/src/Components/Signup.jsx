@@ -25,7 +25,7 @@ const Signup = () => {
       age: age,
     };
     axios
-      .post("https://noteapp25.herokuapp.com/user/signup", payload)
+      .post("https://note258.herokuapp.com/user/signup", payload)
       .then((r) => {
         // console.log(r.data);
         navigate("/login")

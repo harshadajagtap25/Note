@@ -21,7 +21,7 @@ const Login = () => {
       password: password,
     };
     axios
-      .post("https://noteapp25.herokuapp.com/user/login", payload)
+      .post("https://note258.herokuapp.com/user/login", payload)
       .then((r) => {
         console.log(r.data);
         if (r.data.token) {

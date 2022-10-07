@@ -19,6 +19,7 @@ const Edit = () => {
   const [tag, setTag] = useState("");
   const navigate = useNavigate();
   const token = localStorage.getItem("note_app_token");
+  const [error, setError] = useState(false);
 
   const handleEdit = () => {
     const payload = {
@@ -39,11 +40,13 @@ const Edit = () => {
         }
       )
       .then((r) => {
-        console.log(r);
-        // navigate("/note");
+        // console.log(r);
+        navigate("/note");
       })
-      .catch((e) => console.log(e));
-      
+      .catch((e) =>
+        //   console.log(e)
+        setError(true)
+      );
   };
 
   return (

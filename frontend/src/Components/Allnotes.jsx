@@ -8,8 +8,10 @@ import NoteTable from "./NoteTable";
 
 const Allnotes = () => {
   const [notes, setNotes] = useState([]);
+  const [error, setError] = useState(false);
   const token = localStorage.getItem("note_app_token");
   const navigate = useNavigate();
+
   const getNotes = () => {
     axios
       .get("https://note258.herokuapp.com/note", {
@@ -18,10 +20,12 @@ const Allnotes = () => {
         },
       })
       .then((r) => {
-        console.log(r.data);
+        // console.log(r.data);
         setNotes(r.data);
       })
-      .catch((e) => console.log(e));
+      .catch((e) => {
+        setError(true);
+      });
   };
   const handleDelete = (id) => {
     axios
@@ -37,25 +41,13 @@ const Allnotes = () => {
       .then((r) => {
         console.log(r);
       })
-      .catch((e) => console.log(e));
+      .catch((e) => {
+        // console.log(e);
+        setError(true);
+      });
   };
   const handleEdit = (id) => {
     navigate(`/edit/${id}`);
-    // axios
-    //   .patch(
-    //     `https://note258.herokuapp.com/note/edit/${id}`,
-
-    //     {
-    //       headers: {
-    //         Authorization: `Bearer ${token}`,
-    //       },
-    //     }
-    //   )
-    //   .then((r) => {
-    //     console.log(r);
-    //     getNotes();
-    //   })
-    //   .catch((e) => console.log(e));
   };
 
   useEffect(() => {

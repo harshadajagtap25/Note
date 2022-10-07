@@ -15,7 +15,7 @@ import { useNavigate } from "react-router-dom";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleSignup = () => {
     const payload = {
@@ -25,11 +25,11 @@ const Login = () => {
     axios
       .post("https://note258.herokuapp.com/user/login", payload)
       .then((r) => {
-        console.log(r.data);
+        // console.log(r.data);
         if (r.data.token) {
-          localStorage.setItem("note_app_token", r.data.token); 
+          localStorage.setItem("note_app_token", r.data.token);
           localStorage.setItem("note_app_email", r.data.email);
-          navigate("/note")
+          navigate("/note");
         }
       })
       .catch((e) => console.log(e));

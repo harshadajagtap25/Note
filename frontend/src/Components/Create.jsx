@@ -17,6 +17,7 @@ const Create = () => {
   const [note, setNote] = useState("");
   const [tag, setTag] = useState("");
   const navigate = useNavigate();
+  const [error, setError] = useState(false);
 
   const token = localStorage.getItem("note_app_token");
   const handleCreate = () => {
@@ -32,10 +33,11 @@ const Create = () => {
         },
       })
       .then((r) => {
-        console.log(r.data);
         navigate("/note");
       })
-      .catch((e) => console.log(e));
+      .catch((e) => {
+        setError(true);
+      });
   };
 
   return (

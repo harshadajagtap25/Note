@@ -1,13 +1,8 @@
 import { Button, Td, Tr } from "@chakra-ui/react";
-import React, { useState } from "react";
+import React from "react";
 import { DeleteIcon, EditIcon } from "@chakra-ui/icons";
-import axios from "axios";
-import { useEffect } from "react";
 
 const NoteTable = ({ note, handleDelete, handleEdit }) => {
- 
-
-  
   return (
     <Tr>
       <Td>{note.Heading}</Td>

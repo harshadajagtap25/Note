@@ -22,7 +22,7 @@ noteController.patch("/edit/:noteId", async (req, res) => {
   const { noteId } = req.params;
   const updatedNote = await NoteModel.findOneAndUpdate(
     { _id: noteId, userId: req.body.userId },
-    { Heading: req.body.Heading, Note: req.body.Note, Tag: req.body.Heading }
+    { Heading: req.body.Heading, Note: req.body.Note, Tag: req.body.Tag }
   );
   if (updatedNote) res.send({ msg: "Note updated Successfully" });
   else res.send("Something went wrong");

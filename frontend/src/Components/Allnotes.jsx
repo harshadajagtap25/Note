@@ -2,13 +2,14 @@ import { Button } from "@chakra-ui/react";
 import axios from "axios";
 import React, { useState } from "react";
 import { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Table, Thead, Tbody, Tr, Th, TableContainer } from "@chakra-ui/react";
 import NoteTable from "./NoteTable";
 
 const Allnotes = () => {
   const [notes, setNotes] = useState([]);
   const token = localStorage.getItem("note_app_token");
+  const navigate = useNavigate();
   const getNotes = () => {
     axios
       .get("https://note258.herokuapp.com/note", {
@@ -39,22 +40,22 @@ const Allnotes = () => {
       .catch((e) => console.log(e));
   };
   const handleEdit = (id) => {
+    navigate(`/edit/${id}`);
+    // axios
+    //   .patch(
+    //     `https://note258.herokuapp.com/note/edit/${id}`,
 
-    axios
-      .patch(
-        `https://note258.herokuapp.com/note/edit/${id}`,
-
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      )
-      .then((r) => {
-        console.log(r);
-        getNotes();
-      })
-      .catch((e) => console.log(e));
+    //     {
+    //       headers: {
+    //         Authorization: `Bearer ${token}`,
+    //       },
+    //     }
+    //   )
+    //   .then((r) => {
+    //     console.log(r);
+    //     getNotes();
+    //   })
+    //   .catch((e) => console.log(e));
   };
 
   useEffect(() => {
@@ -93,7 +94,7 @@ const Allnotes = () => {
             <p>No notes available</p>
             <Button>
               <Link to="/create">Create New Note</Link>
-            </Button>{" "}
+            </Button>
           </div>
         )}
       </div>

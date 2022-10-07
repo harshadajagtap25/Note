@@ -25,7 +25,7 @@ noteController.patch("/edit/:noteId", async (req, res) => {
     { Heading: req.body.Heading, Note: req.body.Note, Tag: req.body.Tag }
   );
   if (updatedNote) res.send({ msg: "Note updated Successfully" });
-  else res.send("Something went wrong");
+  else res.send({msg:"Something went wrong"});
 });
 
 noteController.delete("/delete/:noteId", async (req, res) => {
@@ -35,7 +35,7 @@ noteController.delete("/delete/:noteId", async (req, res) => {
     userId: req.body.userId,
   });
   if (deleteNote) res.send("Note Deleted Successfully");
-  else res.send("Something went wrong");
+  else res.send({msg:"Something went wrong"});
 });
 
 module.exports = {
